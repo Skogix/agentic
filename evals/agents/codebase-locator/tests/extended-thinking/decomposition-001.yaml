@@ -1,0 +1,27 @@
+id: decomposition-001
+name: "Locator breaks down complex search into parts"
+category: extended-thinking
+agent: "codebase-locator"
+description: "Verify agent decomposes complex search into multiple queries"
+
+input:
+  prompt: |
+    Think hard about this: Find all files related to the payment processing system including services, handlers, tests, and configurations
+  context:
+    files:
+      - path: "src/payments/service.ts"
+        content: "export class PaymentService {}"
+
+expectations:
+  success: true
+  output_contains:
+    - "service"
+  pattern_match: "(?i)(search|look|find).*(payment|service|handler|test|config)"
+  max_tokens: 30000
+
+metadata:
+  author: "agent-generator"
+  priority: medium
+  tags:
+    - extended-thinking
+    - multi-query

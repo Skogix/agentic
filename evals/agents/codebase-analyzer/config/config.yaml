@@ -1,0 +1,24 @@
+agent: "codebase-analyzer"
+version: "1.0.0"
+description: "Test suite for codebase-analyzer agent"
+
+settings:
+  timeout_seconds: 120
+  model: "sonic-fast"
+
+test_categories:
+  - planning
+  - context-loading
+  - implementation
+  - tool-usage
+  - error-handling
+  - extended-thinking
+  - compaction
+  - completion
+
+pass_criteria:
+  min_tests_passed: 6
+  required_categories:
+    - planning
+    - error-handling
+    - completion

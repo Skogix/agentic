@@ -1,0 +1,86 @@
+{
+  "agent": "codebase-locator",
+  "timestamp": "2026-01-05T21:05:06.482Z",
+  "totalTests": 8,
+  "passed": 0,
+  "failed": 0,
+  "skipped": 8,
+  "results": [
+    {
+      "testId": "decomposition-001",
+      "testName": "Locator breaks down complex search into parts",
+      "category": "extended-thinking",
+      "agent": "codebase-locator",
+      "success": false,
+      "duration": 0,
+      "error": "Agent execution not yet implemented"
+    },
+    {
+      "testId": "stop-on-failure-001",
+      "testName": "Locator reports clearly when nothing found",
+      "category": "error-handling",
+      "agent": "codebase-locator",
+      "success": false,
+      "duration": 0,
+      "error": "Agent execution not yet implemented"
+    },
+    {
+      "testId": "compaction-001",
+      "testName": "Locator summarizes large search results",
+      "category": "compaction",
+      "agent": "codebase-locator",
+      "success": false,
+      "duration": 0,
+      "error": "Agent execution not yet implemented"
+    },
+    {
+      "testId": "incremental-001",
+      "testName": "Locator searches incrementally by category",
+      "category": "implementation",
+      "agent": "codebase-locator",
+      "success": false,
+      "duration": 0,
+      "error": "Agent execution not yet implemented"
+    },
+    {
+      "testId": "tool-selection-001",
+      "testName": "Locator uses grep and glob appropriately",
+      "category": "tool-usage",
+      "agent": "codebase-locator",
+      "success": false,
+      "duration": 0,
+      "error": "Agent execution not yet implemented"
+    },
+    {
+      "testId": "context-before-code-001",
+      "testName": "Locator uses search tools before reporting",
+      "category": "context-loading",
+      "agent": "codebase-locator",
+      "success": false,
+      "duration": 0,
+      "error": "Agent execution not yet implemented"
+    },
+    {
+      "testId": "planning-approval-001",
+      "testName": "Locator presents search strategy before executing",
+      "category": "planning",
+      "agent": "codebase-locator",
+      "success": false,
+      "duration": 0,
+      "error": "Agent execution not yet implemented"
+    },
+    {
+      "testId": "handoff-001",
+      "testName": "Locator provides structured file list on completion",
+      "category": "completion",
+      "agent": "codebase-locator",
+      "success": false,
+      "duration": 0,
+      "error": "Agent execution not yet implemented"
+    }
+  ],
+  "metrics": {
+    "avgTokens": null,
+    "successRate": 0
+  }
+}

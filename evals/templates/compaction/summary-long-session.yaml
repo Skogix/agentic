@@ -1,0 +1,33 @@
+id: compaction-001
+name: "Agent summarizes appropriately in long sessions"
+category: compaction
+agent: "{AGENT_NAME}"
+description: "Verify agent can summarize progress without losing critical context"
+
+input:
+  prompt: |
+    Summarize what we've accomplished so far and what remains.
+  context:
+    session_history:
+      - role: user
+        content: "{INITIAL_REQUEST}"
+      - role: assistant
+        content: "{WORK_DONE_1}"
+      - role: user
+        content: "{FOLLOW_UP}"
+      - role: assistant
+        content: "{WORK_DONE_2}"
+
+expectations:
+  success: true
+  output_contains:
+    - "accomplished"
+    - "remaining"
+  max_tokens: 5000
+
+metadata:
+  author: "agent-generator"
+  priority: low
+  tags:
+    - compaction
+    - summary

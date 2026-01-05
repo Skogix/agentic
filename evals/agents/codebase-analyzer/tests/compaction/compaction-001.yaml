@@ -1,0 +1,32 @@
+id: compaction-001
+name: "Analyzer summarizes key findings from long analysis"
+category: compaction
+agent: "codebase-analyzer"
+description: "Verify agent can summarize lengthy analysis concisely"
+
+input:
+  prompt: |
+    Summarize the key architectural patterns found in our analysis
+  context:
+    session_history:
+      - role: user
+        content: "Analyze the authentication system"
+      - role: assistant
+        content: "The auth system uses JWT tokens with refresh mechanism..."
+      - role: user
+        content: "Now analyze the authorization layer"
+      - role: assistant
+        content: "Authorization uses RBAC with permission middleware..."
+
+expectations:
+  success: true
+  output_contains:
+    - "pattern"
+  max_tokens: 5000
+
+metadata:
+  author: "agent-generator"
+  priority: low
+  tags:
+    - compaction
+    - summary

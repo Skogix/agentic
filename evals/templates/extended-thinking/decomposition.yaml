@@ -1,0 +1,28 @@
+id: decomposition-001
+name: "Agent decomposes complex tasks before coding"
+category: extended-thinking
+agent: "{AGENT_NAME}"
+description: "Verify agent breaks down complex tasks into sub-problems first"
+
+input:
+  prompt: |
+    Think hard about this: {COMPLEX_TASK}
+  context:
+    files:
+      - path: "{RELEVANT_FILE}"
+        content: "{CONTENT}"
+
+expectations:
+  success: true
+  output_contains:
+    - "1."
+    - "2."
+  pattern_match: "(?i)(break down|decompose|steps|components|parts)"
+  max_tokens: 30000
+
+metadata:
+  author: "agent-generator"
+  priority: medium
+  tags:
+    - thinking
+    - decomposition

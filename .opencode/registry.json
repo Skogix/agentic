@@ -1,0 +1,209 @@
+{
+  "$schema": "./registry.schema.json",
+  "version": "1.0.0",
+  "lastUpdated": "2026-01-05T21:08:13.689Z",
+  "agents": {
+    "codebase-analyzer": {
+      "file": "agent/core/codebase-analyzer.md",
+      "category": "core",
+      "status": "experimental",
+      "description": "Analyzes HOW code works with precise file:line references",
+      "version": "1.0.0",
+      "tools": [
+        "read",
+        "grep",
+        "glob",
+        "list"
+      ],
+      "testSuite": "evals/agents/codebase-analyzer/",
+      "metrics": {
+        "avgTokens": null,
+        "successRate": null
+      }
+    },
+    "codebase-locator": {
+      "file": "agent/core/codebase-locator.md",
+      "category": "core",
+      "status": "experimental",
+      "description": "Finds WHERE files and components live (Super Grep/Glob)",
+      "version": "1.0.0",
+      "tools": [
+        "grep",
+        "glob",
+        "list"
+      ],
+      "testSuite": "evals/agents/codebase-locator/",
+      "metrics": {
+        "avgTokens": null,
+        "successRate": 0
+      }
+    },
+    "codebase-pattern-finder": {
+      "file": "agent/core/codebase-pattern-finder.md",
+      "category": "core",
+      "status": "experimental",
+      "description": "Finds similar implementations and patterns with code examples",
+      "version": "1.0.0",
+      "tools": [
+        "read",
+        "grep",
+        "glob",
+        "list"
+      ],
+      "testSuite": null,
+      "metrics": {
+        "avgTokens": null,
+        "successRate": null
+      }
+    },
+    "thoughts-locator": {
+      "file": "agent/core/thoughts-locator.md",
+      "category": "core",
+      "status": "experimental",
+      "description": "Discovers documents in thoughts/ directory",
+      "version": "1.0.0",
+      "tools": [
+        "read",
+        "grep",
+        "glob",
+        "list"
+      ],
+      "testSuite": null,
+      "metrics": {
+        "avgTokens": null,
+        "successRate": null
+      }
+    },
+    "thoughts-analyzer": {
+      "file": "agent/core/thoughts-analyzer.md",
+      "category": "core",
+      "status": "experimental",
+      "description": "Extracts insights from thoughts documents",
+      "version": "1.0.0",
+      "tools": [
+        "read",
+        "grep",
+        "glob",
+        "list"
+      ],
+      "testSuite": null,
+      "metrics": {
+        "avgTokens": null,
+        "successRate": null
+      }
+    },
+    "web-search-researcher": {
+      "file": "agent/core/web-search-researcher.md",
+      "category": "core",
+      "status": "draft",
+      "description": "Performs web research and analyzes content",
+      "version": "1.0.0",
+      "tools": [
+        "read",
+        "grep",
+        "glob",
+        "list",
+        "webfetch"
+      ],
+      "testSuite": null,
+      "metrics": {
+        "avgTokens": null,
+        "successRate": null
+      }
+    },
+    "git-manager": {
+      "file": "agent/development/git-manager.md",
+      "category": "development",
+      "status": "experimental",
+      "description": "Manages git worktrees synced with GitHub issues/PRs",
+      "version": "0.1.0",
+      "tools": [
+        "bash",
+        "read",
+        "grep",
+        "glob",
+        "list"
+      ],
+      "testSuite": "evals/agents/git-manager/",
+      "metrics": {
+        "avgTokens": null,
+        "successRate": null
+      }
+    }
+  },
+  "commands": {
+    "execute": {
+      "file": "command/execute.md",
+      "description": "Execute a specific implementation plan",
+      "category": "workflow"
+    },
+    "plan": {
+      "file": "command/plan.md",
+      "description": "Create an implementation plan from a ticket and research",
+      "category": "workflow"
+    },
+    "research": {
+      "file": "command/research.md",
+      "description": "Research a ticket or perform ad-hoc research",
+      "category": "workflow"
+    },
+    "ticket": {
+      "file": "command/ticket.md",
+      "description": "Create a structured ticket for bugs, features, or technical debt",
+      "category": "workflow"
+    },
+    "commit": {
+      "file": "command/commit.md",
+      "description": "Commit local changes in atomic commits",
+      "category": "git"
+    },
+    "review": {
+      "file": "command/review.md",
+      "description": "Review the last commit and document drift from plan",
+      "category": "workflow"
+    },
+    "create-agent": {
+      "file": "command/create-agent.md",
+      "description": "Create a new agent following research-backed patterns",
+      "category": "meta"
+    },
+    "create-tests": {
+      "file": "command/create-tests.md",
+      "description": "Generate 8-test evaluation suite for an agent",
+      "category": "meta"
+    }
+  },
+  "categories": {
+    "core": {
+      "description": "Essential agents for codebase navigation and analysis",
+      "color": "#4CAF50"
+    },
+    "development": {
+      "description": "Agents specialized for development tasks",
+      "color": "#2196F3"
+    },
+    "content": {
+      "description": "Agents for documentation and content creation",
+      "color": "#9C27B0"
+    },
+    "workflow": {
+      "description": "Commands for development workflow",
+      "color": "#FF9800"
+    },
+    "git": {
+      "description": "Commands for git operations",
+      "color": "#607D8B"
+    },
+    "meta": {
+      "description": "Commands for agent/system management",
+      "color": "#E91E63"
+    }
+  },
+  "statusDefinitions": {
+    "draft": "Agent is in development, not ready for use",
+    "experimental": "Agent is being tested, may have issues",
+    "stable": "Agent is production-ready and tested",
+    "legacy": "Agent works but needs refactoring to new patterns",
+    "deprecated": "Agent should not be used, will be removed"
+  }
+}

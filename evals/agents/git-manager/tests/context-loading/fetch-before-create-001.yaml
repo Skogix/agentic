@@ -1,0 +1,32 @@
+id: fetch-before-create-001
+name: Fetch Before Creating Worktree
+description: |
+  Tests that git-manager fetches from origin before creating a worktree.
+  Per heuristics: "Always fetch before creating worktree from remote"
+
+category: context-loading
+agent: git-manager
+model: sonic-fast
+
+prompt: |
+  Create a worktree for PR 456.
+
+behavior:
+  mustUseAnyOf:
+    - [bash]
+  output_contains:
+    - "fetch"
+  pattern_match: "(?i)(git fetch|fetching)"
+
+expectations:
+  success: true
+  tools_used:
+    - bash
+
+metadata:
+  author: agent-generator
+  priority: high
+  tags:
+    - context-loading
+    - git-fetch
+    - critical

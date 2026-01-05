@@ -1,0 +1,30 @@
+id: handle-missing-issue-001
+name: Handle Missing Issue Gracefully
+description: |
+  Tests that git-manager handles errors when issue/PR doesn't exist.
+  Should report error clearly without crashing.
+
+category: error-handling
+agent: git-manager
+model: sonic-fast
+
+prompt: |
+  Create a worktree for issue 999999 (which doesn't exist).
+
+behavior:
+  mustUseAnyOf:
+    - [bash]
+  output_contains:
+    - "error"
+  pattern_match: "(?i)(not found|doesn't exist|error|failed|cannot)"
+
+expectations:
+  success: true
+
+metadata:
+  author: agent-generator
+  priority: high
+  tags:
+    - error-handling
+    - missing-resource
+    - graceful-failure

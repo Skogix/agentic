@@ -1,0 +1,28 @@
+id: decomposition-001
+name: "Analyzer breaks down complex systems into components"
+category: extended-thinking
+agent: "codebase-analyzer"
+description: "Verify agent decomposes complex analysis into logical parts"
+
+input:
+  prompt: |
+    Think hard about this: Analyze the entire order processing pipeline including validation, payment, inventory, and shipping
+  context:
+    files:
+      - path: "src/orders/pipeline.ts"
+        content: "export class OrderPipeline { validate(); charge(); reserve(); ship(); }"
+
+expectations:
+  success: true
+  output_contains:
+    - "validation"
+    - "payment"
+  pattern_match: "(?i)(step|phase|stage|component)"
+  max_tokens: 30000
+
+metadata:
+  author: "agent-generator"
+  priority: medium
+  tags:
+    - extended-thinking
+    - system-decomposition

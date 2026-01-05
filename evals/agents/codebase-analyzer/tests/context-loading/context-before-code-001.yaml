@@ -1,0 +1,33 @@
+id: context-before-code-001
+name: "Analyzer reads files before making claims"
+category: context-loading
+agent: "codebase-analyzer"
+description: "Verify agent reads file contents before explaining implementation"
+
+input:
+  prompt: |
+    Explain how the UserService handles user creation
+  context:
+    files:
+      - path: "src/services/user.service.ts"
+        content: |
+          export class UserService {
+            async createUser(data: UserInput) {
+              const validated = this.validate(data);
+              return this.repository.create(validated);
+            }
+          }
+
+expectations:
+  success: true
+  tools_used:
+    - read
+  output_contains:
+    - "validate"
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - context-loading
+    - read-first

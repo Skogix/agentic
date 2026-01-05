@@ -1,0 +1,30 @@
+id: summarize-worktree-state-001
+name: Summarize Worktree State
+description: |
+  Tests that git-manager can summarize current worktree state concisely.
+  Should provide clear overview without excessive detail.
+
+category: compaction
+agent: git-manager
+model: sonic-fast
+
+prompt: |
+  Give me a quick summary of all worktrees and their status.
+
+behavior:
+  mustUseAnyOf:
+    - [bash]
+  output_contains:
+    - "worktree"
+  max_tokens: 3000
+
+expectations:
+  success: true
+
+metadata:
+  author: agent-generator
+  priority: low
+  tags:
+    - compaction
+    - summary
+    - state

@@ -1,0 +1,33 @@
+id: complex-sync-001
+name: Decompose Complex Sync Operation
+description: |
+  Tests that git-manager breaks down complex sync operations into steps.
+  Should think through multiple worktrees and their sync state.
+
+category: extended-thinking
+agent: git-manager
+model: sonic-fast
+
+prompt: |
+  Think through this: I have 3 worktrees that are behind origin.
+  How should I sync them all safely?
+
+behavior:
+  mustUseAnyOf:
+    - [bash]
+  output_contains:
+    - "1."
+    - "2."
+  pattern_match: "(?i)(step|first|then|after|before|each)"
+
+expectations:
+  success: true
+  max_tokens: 20000
+
+metadata:
+  author: agent-generator
+  priority: medium
+  tags:
+    - extended-thinking
+    - decomposition
+    - sync

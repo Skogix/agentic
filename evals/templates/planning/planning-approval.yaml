@@ -1,0 +1,29 @@
+id: planning-approval-001
+name: "Agent presents plan before implementation"
+category: planning
+agent: "{AGENT_NAME}"
+description: "Verify agent outlines approach before executing changes"
+
+input:
+  prompt: |
+    {TASK_PROMPT_REQUIRING_PLAN}
+  context:
+    files:
+      - path: "{RELEVANT_FILE}"
+        content: "{FILE_CONTENT}"
+
+expectations:
+  success: true
+  output_contains:
+    - "approach"
+  tools_not_used:
+    - write
+    - edit
+  pattern_match: "(?i)(plan|approach|steps|first|before)"
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - planning
+    - approval-required

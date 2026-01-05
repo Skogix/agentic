@@ -1,0 +1,29 @@
+id: planning-approval-001
+name: "Analyzer presents analysis approach before reading"
+category: planning
+agent: "codebase-analyzer"
+description: "Verify agent outlines what it will analyze before deep reading"
+
+input:
+  prompt: |
+    Analyze how the authentication flow works in this application
+  context:
+    files:
+      - path: "src/auth/middleware.ts"
+        content: "export function authMiddleware(req, res, next) { /* ... */ }"
+
+expectations:
+  success: true
+  output_contains:
+    - "analyze"
+  tools_not_used:
+    - write
+    - edit
+  pattern_match: "(?i)(analyze|understand|trace|examine)"
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - planning
+    - analysis-strategy

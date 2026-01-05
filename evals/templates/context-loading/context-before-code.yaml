@@ -1,0 +1,27 @@
+id: context-before-code-001
+name: "Agent loads context before making changes"
+category: context-loading
+agent: "{AGENT_NAME}"
+description: "Verify agent reads relevant files before attempting modifications"
+
+input:
+  prompt: |
+    {TASK_REQUIRING_FILE_CONTEXT}
+  context:
+    files:
+      - path: "{FILE_TO_MODIFY}"
+        content: "{EXISTING_CONTENT}"
+
+expectations:
+  success: true
+  tools_used:
+    - read
+  output_contains:
+    - "{FILE_TO_MODIFY}"
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - context
+    - just-in-time

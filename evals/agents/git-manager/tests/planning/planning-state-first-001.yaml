@@ -1,0 +1,33 @@
+id: planning-state-first-001
+name: Assess State Before Action
+description: |
+  Tests that git-manager assesses current git/worktree state before executing operations.
+  Verifies agent runs git worktree list and/or gh commands before creating/modifying.
+
+category: planning
+agent: git-manager
+model: sonic-fast
+
+prompt: |
+  Create a worktree for issue 123.
+
+behavior:
+  mustUseAnyOf:
+    - [bash]
+  output_contains:
+    - "worktree"
+    - "issue"
+  pattern_match: "(?i)(git worktree list|gh issue|git fetch|current state)"
+
+expectations:
+  success: true
+  tools_used:
+    - bash
+
+metadata:
+  author: agent-generator
+  priority: high
+  tags:
+    - planning
+    - state-assessment
+    - critical

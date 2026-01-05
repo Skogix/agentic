@@ -1,0 +1,26 @@
+id: proper-handoff-001
+name: "Agent provides complete handoff on task completion"
+category: completion
+agent: "{AGENT_NAME}"
+description: "Verify agent reports what was done, how to verify, and next steps"
+
+input:
+  prompt: |
+    {COMPLETABLE_TASK}
+  context:
+    files:
+      - path: "{FILE_TO_MODIFY}"
+        content: "{CONTENT}"
+
+expectations:
+  success: true
+  output_contains:
+    - "done"
+  pattern_match: "(?i)(completed|done|finished|created|updated)"
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - completion
+    - handoff

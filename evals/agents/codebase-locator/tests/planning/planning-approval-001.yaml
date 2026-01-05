@@ -1,0 +1,29 @@
+id: planning-approval-001
+name: "Locator presents search strategy before executing"
+category: planning
+agent: "codebase-locator"
+description: "Verify agent outlines search approach before executing searches"
+
+input:
+  prompt: |
+    Find all authentication-related files in the codebase
+  context:
+    files:
+      - path: "src/auth/login.ts"
+        content: "export function login() {}"
+
+expectations:
+  success: true
+  output_contains:
+    - "search"
+  tools_not_used:
+    - write
+    - edit
+  pattern_match: "(?i)(search|find|look|grep|glob)"
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - planning
+    - search-strategy

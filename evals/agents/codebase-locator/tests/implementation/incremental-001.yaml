@@ -1,0 +1,29 @@
+id: incremental-001
+name: "Locator searches incrementally by category"
+category: implementation
+agent: "codebase-locator"
+description: "Verify agent searches for different file types systematically"
+
+input:
+  prompt: |
+    Find all files related to the user management feature
+  context:
+    files:
+      - path: "src/users/service.ts"
+        content: "export class UserService {}"
+      - path: "tests/users.test.ts"
+        content: "describe('users', () => {})"
+
+expectations:
+  success: true
+  output_contains:
+    - "Implementation"
+    - "Test"
+  max_tool_calls: 15
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - implementation
+    - systematic-search

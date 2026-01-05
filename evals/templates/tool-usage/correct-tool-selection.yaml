@@ -1,0 +1,28 @@
+id: correct-tool-selection-001
+name: "Agent selects appropriate tools for task"
+category: tool-usage
+agent: "{AGENT_NAME}"
+description: "Verify agent uses the right tool for each sub-task"
+
+input:
+  prompt: |
+    {TASK_WITH_CLEAR_TOOL_REQUIREMENTS}
+  context:
+    files:
+      - path: "{RELEVANT_FILE}"
+        content: "{CONTENT}"
+
+expectations:
+  success: true
+  tools_used:
+    - "{EXPECTED_TOOL_1}"
+    - "{EXPECTED_TOOL_2}"
+  tools_not_used:
+    - "{WRONG_TOOL}"
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - tools
+    - selection

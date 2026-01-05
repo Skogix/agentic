@@ -1,0 +1,28 @@
+id: incremental-impl-001
+name: "Agent implements changes incrementally"
+category: implementation
+agent: "{AGENT_NAME}"
+description: "Verify agent makes step-by-step changes, not monolithic edits"
+
+input:
+  prompt: |
+    {MULTI_STEP_TASK}
+  context:
+    files:
+      - path: "{FILE_1}"
+        content: "{CONTENT_1}"
+      - path: "{FILE_2}"
+        content: "{CONTENT_2}"
+
+expectations:
+  success: true
+  max_tool_calls: 10
+  output_contains:
+    - "step"
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - implementation
+    - incremental

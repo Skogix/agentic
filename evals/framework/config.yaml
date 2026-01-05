@@ -1,0 +1,79 @@
+# OpenCode Agent Evaluation Framework Configuration
+# Based on Anthropic 2025 research-backed testing patterns
+
+version: "1.0.0"
+
+# Global settings
+settings:
+  timeout_seconds: 120
+  max_retries: 2
+  parallel_tests: 4
+  verbose: true
+
+# Test categories aligned with research
+categories:
+  planning:
+    description: "Verify plan-first approach before implementation"
+    weight: 1.0
+
+  context-loading:
+    description: "Ensure just-in-time context retrieval"
+    weight: 1.0
+
+  implementation:
+    description: "Verify step-by-step execution"
+    weight: 1.5
+
+  tool-usage:
+    description: "Check correct tool selection and usage"
+    weight: 1.0
+
+  error-handling:
+    description: "Verify stop-on-failure behavior"
+    weight: 1.5
+
+  extended-thinking:
+    description: "Check decomposition before coding"
+    weight: 0.8
+
+  compaction:
+    description: "Verify summarization for long sessions"
+    weight: 0.5
+
+  completion:
+    description: "Check proper output and handoff"
+    weight: 1.0
+
+# Metrics to capture
+metrics:
+  - name: "task_success"
+    type: "boolean"
+    description: "Did the agent complete the task correctly?"
+
+  - name: "token_usage"
+    type: "integer"
+    description: "Total tokens used"
+
+  - name: "tool_calls"
+    type: "integer"
+    description: "Number of tool invocations"
+
+  - name: "time_seconds"
+    type: "float"
+    description: "Time to completion"
+
+  - name: "error_recovery"
+    type: "boolean"
+    description: "Did agent recover from errors appropriately?"
+
+# Pass/fail thresholds
+thresholds:
+  min_success_rate: 0.8
+  max_avg_tokens: 50000
+  max_avg_time_seconds: 60
+
+# Reporting
+reports:
+  format: ["json", "markdown"]
+  output_dir: "evals/reports/"
+  include_logs: true

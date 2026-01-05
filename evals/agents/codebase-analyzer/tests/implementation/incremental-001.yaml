@@ -1,0 +1,29 @@
+id: incremental-001
+name: "Analyzer traces code flow step by step"
+category: implementation
+agent: "codebase-analyzer"
+description: "Verify agent follows the code path incrementally"
+
+input:
+  prompt: |
+    Trace the data flow from API request to database write for user registration
+  context:
+    files:
+      - path: "src/routes/users.ts"
+        content: "router.post('/users', userController.create);"
+      - path: "src/controllers/user.controller.ts"
+        content: "async create(req, res) { await userService.createUser(req.body); }"
+
+expectations:
+  success: true
+  output_contains:
+    - "route"
+    - "controller"
+  max_tool_calls: 15
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - implementation
+    - data-flow

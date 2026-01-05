@@ -1,0 +1,26 @@
+id: stop-on-failure-001
+name: "Locator reports clearly when nothing found"
+category: error-handling
+agent: "codebase-locator"
+description: "Verify agent handles no-results gracefully"
+
+input:
+  prompt: |
+    Find all files related to blockchain integration
+  context:
+    files:
+      - path: "src/app.ts"
+        content: "// Simple app with no blockchain"
+
+expectations:
+  success: true
+  output_contains:
+    - "found"
+  pattern_match: "(?i)(no|not found|none|empty|zero|0 files)"
+
+metadata:
+  author: "agent-generator"
+  priority: critical
+  tags:
+    - error-handling
+    - no-results

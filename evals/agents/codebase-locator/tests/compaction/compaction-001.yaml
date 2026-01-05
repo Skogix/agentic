@@ -1,0 +1,28 @@
+id: compaction-001
+name: "Locator summarizes large search results"
+category: compaction
+agent: "codebase-locator"
+description: "Verify agent groups and summarizes many file matches"
+
+input:
+  prompt: |
+    Find all TypeScript files and summarize by directory
+  context:
+    session_history:
+      - role: user
+        content: "Find all TypeScript files"
+      - role: assistant
+        content: "Found 50+ files across multiple directories"
+
+expectations:
+  success: true
+  output_contains:
+    - "directory"
+  max_tokens: 5000
+
+metadata:
+  author: "agent-generator"
+  priority: low
+  tags:
+    - compaction
+    - summary

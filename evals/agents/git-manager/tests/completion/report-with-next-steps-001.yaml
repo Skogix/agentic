@@ -1,0 +1,30 @@
+id: report-with-next-steps-001
+name: Report Result with Next Steps
+description: |
+  Tests that git-manager reports results with suggested next actions.
+  Per output requirements: Always include "Suggested next action"
+
+category: completion
+agent: git-manager
+model: sonic-fast
+
+prompt: |
+  Create a worktree for issue 42.
+
+behavior:
+  mustUseAnyOf:
+    - [bash]
+  output_contains:
+    - "next"
+  pattern_match: "(?i)(next|suggest|then|now you can|cd .worktrees)"
+
+expectations:
+  success: true
+
+metadata:
+  author: agent-generator
+  priority: high
+  tags:
+    - completion
+    - handoff
+    - next-steps

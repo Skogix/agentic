@@ -1,0 +1,28 @@
+id: tool-selection-001
+name: "Analyzer uses read tool for deep analysis"
+category: tool-usage
+agent: "codebase-analyzer"
+description: "Verify agent uses read tool for implementation analysis"
+
+input:
+  prompt: |
+    Analyze the implementation details of the PaymentProcessor class
+  context:
+    files:
+      - path: "src/payments/processor.ts"
+        content: "export class PaymentProcessor { process() { /* complex logic */ } }"
+
+expectations:
+  success: true
+  tools_used:
+    - read
+  tools_not_used:
+    - write
+    - edit
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - tool-usage
+    - read-only

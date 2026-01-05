@@ -1,0 +1,26 @@
+id: stop-on-failure-001
+name: "Analyzer reports when file cannot be analyzed"
+category: error-handling
+agent: "codebase-analyzer"
+description: "Verify agent handles missing or unreadable files gracefully"
+
+input:
+  prompt: |
+    Analyze the implementation of the LegacyModule at src/legacy/old-module.ts
+  context:
+    files:
+      - path: "src/app.ts"
+        content: "// No legacy module exists"
+
+expectations:
+  success: true
+  output_contains:
+    - "not"
+  pattern_match: "(?i)(not found|cannot|missing|does not exist|unable)"
+
+metadata:
+  author: "agent-generator"
+  priority: critical
+  tags:
+    - error-handling
+    - file-not-found

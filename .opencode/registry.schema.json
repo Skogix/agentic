@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Agent Registry Schema",
+  "description": "Schema for OpenCode agent registry",
+  "type": "object",
+  "required": ["version", "agents", "commands", "categories", "statusDefinitions"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "agents": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/agent"
+      }
+    },
+    "commands": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/command"
+      }
+    },
+    "categories": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/category"
+      }
+    },
+    "statusDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "definitions": {
+    "agent": {
+      "type": "object",
+      "required": ["file", "category", "status", "description", "version", "tools"],
+      "properties": {
+        "file": {
+          "type": "string",
+          "description": "Path to agent markdown file relative to .opencode/"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["core", "development", "content"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "experimental", "stable", "legacy", "deprecated"]
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["read", "write", "edit", "bash", "grep", "glob", "list", "webfetch", "todoread", "todowrite", "patch", "task"]
+          }
+        },
+        "testSuite": {
+          "type": ["string", "null"],
+          "description": "Path to test suite directory"
+        },
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "avgTokens": {
+              "type": ["number", "null"]
+            },
+            "successRate": {
+              "type": ["number", "null"],
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        }
+      }
+    },
+    "command": {
+      "type": "object",
+      "required": ["file", "description", "category"],
+      "properties": {
+        "file": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        }
+      }
+    },
+    "category": {
+      "type": "object",
+      "required": ["description"],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        }
+      }
+    }
+  }
+}

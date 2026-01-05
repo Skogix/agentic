@@ -1,0 +1,27 @@
+id: context-before-code-001
+name: "Locator uses search tools before reporting"
+category: context-loading
+agent: "codebase-locator"
+description: "Verify agent searches codebase before claiming to find files"
+
+input:
+  prompt: |
+    Find all files related to database connections
+  context:
+    files:
+      - path: "src/db/connection.ts"
+        content: "export const db = connect();"
+
+expectations:
+  success: true
+  tools_used:
+    - grep
+  output_contains:
+    - "src/"
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - context-loading
+    - search-first

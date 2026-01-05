@@ -1,0 +1,29 @@
+id: tool-selection-001
+name: "Locator uses grep and glob appropriately"
+category: tool-usage
+agent: "codebase-locator"
+description: "Verify agent uses grep for content search and glob for file patterns"
+
+input:
+  prompt: |
+    Find all TypeScript files that contain "export default"
+  context:
+    files:
+      - path: "src/index.ts"
+        content: "export default App;"
+
+expectations:
+  success: true
+  tools_used:
+    - grep
+  tools_not_used:
+    - read
+    - write
+    - edit
+
+metadata:
+  author: "agent-generator"
+  priority: high
+  tags:
+    - tool-usage
+    - grep-glob

@@ -1,0 +1,106 @@
+$schema: http://json-schema.org/draft-07/schema#
+title: Agent Test Definition
+description: Schema for individual agent test cases
+
+type: object
+required:
+  - id
+  - name
+  - category
+  - agent
+  - input
+  - expectations
+
+properties:
+  id:
+    type: string
+    pattern: "^[a-z0-9-]+-\\d{3}$"
+    description: "Unique test ID (e.g., planning-approval-001)"
+
+  name:
+    type: string
+    maxLength: 100
+    description: "Human-readable test name"
+
+  category:
+    type: string
+    enum:
+      - planning
+      - context-loading
+      - implementation
+      - tool-usage
+      - error-handling
+      - extended-thinking
+      - compaction
+      - completion
+
+  agent:
+    type: string
+    description: "Agent name from registry"
+
+  description:
+    type: string
+    description: "What this test validates"
+
+  input:
+    type: object
+    required:
+      - prompt
+    properties:
+      prompt:
+        type: string
+        description: "User prompt to send to agent"
+      context:
+        type: object
+        description: "Additional context (files, state)"
+      setup:
+        type: array
+        items:
+          type: string
+        description: "Commands to run before test"
+
+  expectations:
+    type: object
+    properties:
+      success:
+        type: boolean
+        default: true
+      output_contains:
+        type: array
+        items:
+          type: string
+      output_not_contains:
+        type: array
+        items:
+          type: string
+      tools_used:
+        type: array
+        items:
+          type: string
+      tools_not_used:
+        type: array
+        items:
+          type: string
+      max_tokens:
+        type: integer
+      max_tool_calls:
+        type: integer
+      pattern_match:
+        type: string
+        description: "Regex pattern output must match"
+
+  metadata:
+    type: object
+    properties:
+      author:
+        type: string
+      created:
+        type: string
+        format: date
+      priority:
+        type: string
+        enum: [critical, high, medium, low]
+      tags:
+        type: array
+        items:
+          type: string

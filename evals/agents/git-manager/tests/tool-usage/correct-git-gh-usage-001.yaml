@@ -1,0 +1,37 @@
+id: correct-git-gh-usage-001
+name: Correct Git and GH CLI Usage
+description: |
+  Tests that git-manager uses correct git and gh CLI commands for operations.
+  Verifies proper command syntax and tool selection.
+
+category: tool-usage
+agent: git-manager
+model: sonic-fast
+
+prompt: |
+  List all current worktrees and show any open PRs.
+
+behavior:
+  mustUseAnyOf:
+    - [bash]
+  output_contains:
+    - "git worktree"
+    - "gh pr"
+  tools_not_used:
+    - write
+    - edit
+
+expectations:
+  success: true
+  tools_used:
+    - bash
+  max_tool_calls: 10
+
+metadata:
+  author: agent-generator
+  priority: high
+  tags:
+    - tool-usage
+    - git
+    - gh-cli
+    - critical

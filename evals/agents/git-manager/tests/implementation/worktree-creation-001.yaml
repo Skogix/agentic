@@ -1,0 +1,34 @@
+id: worktree-creation-001
+name: Worktree Creation with Correct Naming
+description: |
+  Tests that git-manager creates worktrees with correct path and branch naming conventions.
+  Path: .worktrees/<number>-<slug>
+  Branch: <type>/<number>-<slug>
+
+category: implementation
+agent: git-manager
+model: sonic-fast
+
+prompt: |
+  Create a worktree for issue 42 which is about fixing authentication.
+
+behavior:
+  mustUseAnyOf:
+    - [bash]
+  output_contains:
+    - ".worktrees/"
+    - "42"
+  pattern_match: "(?i)(\\.worktrees/42|fix/42|feat/42)"
+
+expectations:
+  success: true
+  tools_used:
+    - bash
+
+metadata:
+  author: agent-generator
+  priority: high
+  tags:
+    - implementation
+    - naming-convention
+    - worktree

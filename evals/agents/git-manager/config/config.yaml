@@ -1,0 +1,40 @@
+agent: git-manager
+version: "1.0.0"
+description: Test suite for git-manager agent - worktree and GitHub sync management
+
+settings:
+  timeout_seconds: 60
+  model: sonic-fast
+
+test_categories:
+  - planning
+  - context-loading
+  - implementation
+  - tool-usage
+  - error-handling
+  - extended-thinking
+  - compaction
+  - completion
+
+expectations:
+  requiresApproval: false
+  mode: subagent
+  primaryTools:
+    - bash
+    - read
+    - grep
+    - glob
+    - list
+  forbiddenTools:
+    - write
+    - edit
+  usesGitCommands: true
+  usesGhCli: true
+
+pass_criteria:
+  min_tests_passed: 6
+  required_categories:
+    - planning
+    - tool-usage
+    - error-handling
+    - completion
