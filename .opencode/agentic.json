@@ -1,6 +1,7 @@
 {
   "thoughts": "thoughts",
   "agents": {
-    "model": "sonic-fast"
-  }
+    "model": "opus-4-5"
+  },
+  "get": "agents"
 }
