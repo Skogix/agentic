@@ -26,7 +26,7 @@ The user will provide a ticket for you to read and begin researching.
     - Consider which directories, files, or architectural patterns are relevant
 
 3. **Spawn tasks for comprehensive research (follow this sequence):**
-
+   
    **Phase 1 - Locate (Codebase & Thoughts):**
    - Identify all topics/components/areas you need to locate
    - Group related topics into coherent batches
